@@ -49,8 +49,6 @@ void setup() {
     for (;;); // Don't proceed, loop forever
   } 
 
-   // display.display();
-   //delay(100); // Pause for 0,5 seconds
   display.clearDisplay();
 
 }
@@ -124,7 +122,7 @@ void loop() {
 
 
 void checkmovement() {
-  Serial.println(digitalRead(pirPin)); //
+  Serial.println(digitalRead(pirPin)); // //Writes in value of sensor
   pirStat = digitalRead(pirPin);  // read sensor value
   delay(500);                     // delay 0,5 seconds
   if (pirStat == HIGH) {          // check if the sensor is HIGH
