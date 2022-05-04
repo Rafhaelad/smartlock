@@ -17,7 +17,7 @@ int pirStat = 0;                // variable to store the sensor status (value)
 
 
 char data[passwordLengt];
-char master[passwordLengt] = {"1234"};  // The password for the keypad is 1234
+char master[passwordLengt] = {"1254"};  // The password for the keypad is 1234
 byte dataCount = 0; 
 char customKey;
 const byte ROWS = 4; // four rows 
@@ -38,11 +38,10 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void setup() {
   Serial.begin(9600);         // initialize serial
-  pinMode(pirPin, INPUT);      // Initalize motion detector
+  pinMode(pirPin, INPUT);     // Initalize motion detector
   pinMode(ledPin, OUTPUT);    // initalize LED as an output
   pinMode(12, OUTPUT);       // init pin for piezo
   digitalWrite(12, LOW);     // initalize for motion 
-
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
@@ -52,7 +51,6 @@ void setup() {
   display.clearDisplay();
 
 }
-
 
 void loop() {
   checkmovement();
@@ -66,7 +64,6 @@ void loop() {
 
   if (customKey) {
     data[dataCount] = customKey;
-    
     if (dataCount == 0) {
       display.setTextSize(2);
       display.setTextColor(WHITE);
@@ -88,7 +85,6 @@ void loop() {
       display.println("****");
       display.display();
     }
-    delay(100);
     dataCount++;
   }
 
@@ -122,9 +118,9 @@ void loop() {
 
 
 void checkmovement() {
-  Serial.println(digitalRead(pirPin)); // //Writes in value of sensor
+  Serial.println(digitalRead(pirPin)); //Writes in value of sensor
   pirStat = digitalRead(pirPin);  // read sensor value
-  delay(500);                     // delay 0,5 seconds
+  delay(100);                     // delay 0,5 seconds
   if (pirStat == HIGH) {          // check if the sensor is HIGH
     digitalWrite(ledPin, HIGH);   // turn LED ON
     Serial.println("MOTION DETECTED"); //Writes in seriall monitor "motion detected" when motion is detected
@@ -134,7 +130,6 @@ void checkmovement() {
     Serial.println("NO MOTION DETECTED"); //Writes in seriall monitor "No motion detected" when no motion is detected
   }
 }
-
 
 
 
