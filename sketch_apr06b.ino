@@ -15,13 +15,6 @@ int ledPin = 13;                // the pin that the LED is atteched to
 int pirPin = 10;                 // sensor Output
 int pirStat = 0;                // variable to store the sensor status (value)
 
-/* TA BORT 
-int led = 13;                // the pin that the LED is attached to
-int sensor = 10;              // the pin that the sensor is attached to
-int state = LOW;             // by default, no motion detected
-int val = 0;                 // variable to store the sensor status/value
-*/
-
 
 char data[passwordLengt];
 char master[passwordLengt] = {"1234"};  // The password for the keypad is 1234
@@ -45,10 +38,11 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void setup() {
   Serial.begin(9600);         // initialize serial
-  pinMode(pirPin, INPUT);     // 
+  pinMode(pirPin, INPUT);      // Initalize motion detector
   pinMode(ledPin, OUTPUT);    // initalize LED as an output
   pinMode(12, OUTPUT);       // init pin for piezo
-  digitalWrite(12, LOW);     //
+  digitalWrite(12, LOW);     // initalize for motion 
+
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
@@ -74,11 +68,7 @@ void loop() {
 
   if (customKey) {
     data[dataCount] = customKey;
-    //    display.setTextSize(2);
-    //    display.setTextColor(WHITE);
-    //    display.println(data);
-    //    display.display();
-
+    
     if (dataCount == 0) {
       display.setTextSize(2);
       display.setTextColor(WHITE);
@@ -149,30 +139,6 @@ void checkmovement() {
 
 
 
-/* TA BORT
-  val = digitalRead(sensor);   // read sensor value
-  Serial.println(val);
-  if (val == HIGH) {          // check if the sensor is HIGH
-    digitalWrite(led, HIGH);   // turn LED ON
-    delay(100);                // delay
-
-    if (state == LOW) {
-      Serial.println("Motion detected!");
-      state = HIGH;       // update variable
-    }
-  }
-  else {
-    digitalWrite(led, LOW); // turn LED OFF
-    delay(100);             // delay
-
-    if (state == HIGH) {
-      Serial.println("Motion stopped!");
-      state = LOW;       // update variable
-    }
-  }
-}
-
-*/
 
 
 
