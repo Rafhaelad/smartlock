@@ -50,7 +50,7 @@ void setup() {
     for (;;);   // Don't proceed, loop forever
   }
 
-  display.clearDisplay();
+  display.clearDisplay(); //clears display
 
 }
 
@@ -92,7 +92,7 @@ void loop() {
 
   if (dataCount == passwordLengt - 1) {  // See if we have reached the password length
 
-    display.clearDisplay();
+    display.clearDisplay();  //clears display
     display.setCursor(0, 0); //where the text should be
 
     if (!strcmp(data, master)) {    // If password is correctit it will write on the screen
@@ -113,9 +113,9 @@ void loop() {
       display.display(); // Updates the screen so it comes up on the screen
       delay(100); // A delay/pause 
       display.clearDisplay(); //clears the screen/display
-      playsound();
+      playsound(); //plays alarm 
     }
-    clearData();
+    clearData(); // clears data
   }
 }
 
