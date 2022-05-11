@@ -12,8 +12,10 @@
 
 
 int ledPin = 13;                // the pin that the LED is atteched to
-int pirPin = 10;                 // sensor Output
+int pirPin = 2;                 // sensor Output
 int pirStat = 0;                // variable to store the sensor status (value)
+int state = LOW;             // by default, no motion detected
+
 
 
 char data[passwordLengt];
@@ -120,17 +122,28 @@ void loop() {
 void checkmovement() {
   Serial.println(digitalRead(pirPin)); //Writes in value of sensor
   pirStat = digitalRead(pirPin);  // read sensor value
-  delay(100);                     // delay 0,5 seconds
+    delay(100);                // delay 100 milliseconds 
   if (pirStat == HIGH) {          // check if the sensor is HIGH
     digitalWrite(ledPin, HIGH);   // turn LED ON
     Serial.println("MOTION DETECTED"); //Writes in seriall monitor "motion detected" when motion is detected
+
+
+     if (state == LOW) {
+      Serial.println("Motion detected!"); 
+      state = HIGH;       // update variable state to HIGH
   }
+}
   else {
     digitalWrite(ledPin, LOW); // turn LED OFF
     Serial.println("NO MOTION DETECTED"); //Writes in seriall monitor "No motion detected" when no motion is detected
+
+      if (state == HIGH){
+        Serial.println("Motion stopped!");
+        state = LOW;       // update variable state to LOW
+
   }
 }
-
+}
 
 
 
