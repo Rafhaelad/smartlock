@@ -5,7 +5,7 @@
 #define SCREEN_WIDTH 128   // OLED display width, in pixels
 #define SCREEN_HEIGHT 64   //  OLED display height, in pixels
 #define OLED_RESET 4   // Reset pin 
-#define SCREEN_ADDRESS 0x3C   // Display text on the screen 
+#define SCREEN_ADDRESS 0x3C   // Display text on the screen on the adressed plase
 #define passwordLengt 5  // The length of the password
 #define startPos 0  // The position of the start 
 
@@ -14,12 +14,12 @@
 int ledPin = 13;                // the pin that the LED is attached to
 int pirPin = 2;                 // sensor Output
 int pirStat = 0;                // variable to store the sensor status (value)
-int state = LOW;             // by default, no motion detected
+int state = LOW;               // by default, no motion detected
 
 
 
 char data[passwordLengt]; // Character to hold password input
-char master[passwordLengt] = {"1254"};  // The password for the keypad is 1234
+char master[passwordLengt] = {"1254"};  // The password for the keypad is 1254
 byte dataCount = 0; //Counter for character entries
 char customKey;    // Character to hold key input
 const byte ROWS = 4; // four rows
